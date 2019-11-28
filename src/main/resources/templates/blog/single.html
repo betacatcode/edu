@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Blog Details</title>
+
+	<!--
+              Google Font
+              ============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+<!-- Start Header Area -->
+<header id="header" >
+	<div th:replace="common/bar::topbar"></div>
+</header>
+<!-- End Header Area -->
+
+<!-- Start Banner Area -->
+<section class="banner-area relative">
+	<div class="container">
+		<div class="row d-flex align-items-center justify-content-center">
+			<div class="about-content col-lg-12">
+				<h1 class="text-white">
+					欢迎来到[[${info.userName}]]的空间</h1>
+					<div class="link-nav">
+						<span class="box">
+							<a href="/">首页</a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="#">[[${info.userName}]]的空间</a>
+						</span>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="rocket-img">
+		<img src="img/rocket.png" alt="">
+	</div>
+</section>
+<!-- End Banner Area -->
+
+<!--<h3>[[${session.type}]]</h3>-->
+<!--<h3>[[${session.userId}]]</h3>-->
+
+<!-- Start post-content Area -->
+<section class="post-content-area single-post-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="single-post row">
+					<div class="col-md-12">
+						<div class="feature-img">
+							<img class="img-fluid" th:src="${'/path/'+info.img}" alt="">
+						</div>
+					</div>
+					<div class="col-lg-3  col-md-3 meta-details">
+
+						<ul class="tags">
+							<li th:each="tag:${info.tagNames}"><a href="#">[[${tag}]]&nbsp;</a></li>
+						</ul>
+						<div class="user-details row">
+							<p class="user-name col-lg-12 col-md-12 col-6"><a href="#">[[${info.userName}]]</a> <span class="lnr lnr-user"></span></p>
+							<p class="date col-lg-12 col-md-12 col-6"><a href="#">[[${info.pubTime}]]</a> <span class="lnr lnr-calendar-full"></span></p>
+							<p class="view col-lg-12 col-md-12 col-6"><a href="#">[[${info.viewNum}]]次浏览</a> <span class="lnr lnr-eye"></span></p>
+							<p class="comments col-lg-12 col-md-12 col-6"><a href="#">[[${info.commentNum}]]次评论</a> <span class="lnr lnr-bubble"></span></p>
+						</div>
+					</div>
+					<div class="col-lg-9 col-md-9">
+						<h3 class="mt-20 mb-20">[[${info.title}]]</h3>
+						<p class="excert">
+							[[${info.content}]]
+						</p>
+					</div>
+				</div>
+				<div class="comments-area">
+					<h4>[[${info.commentNum}]]&nbsp;Comments</h4>
+					<div class="comment-list">
+						<div th:each="commentInfo:${commentInfos}" class="single-comment justify-content-between d-flex">
+							<div class="user justify-content-between d-flex">
+								<div class="thumb">
+									<img style="height: 100px;width: 100px" th:src="${'/path/'+commentInfo.img}" alt="">
+								</div>
+								<div class="desc">
+									<h5><a href="#">[[${commentInfo.userName}]]</a></h5>
+									<p class="date">[[${commentInfo.pubTime}]] </p>
+									<p class="comment">
+										[[${commentInfo.content}]]
+									</p>
+								</div>
+							</div>
+							<div class="reply-btn">
+								<a href="" class="btn-reply text-uppercase">reply</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="comment-form">
+					<h4>新评论</h4>
+					<form th:action="@{/submitComment}">
+						<div class="form-group">
+								<textarea class="form-control mb-10" rows="5" name="content" placeholder="信息" onfocus="this.placeholder = ''" onblur="this.placeholder = '信息'"
+										  required=""></textarea>
+						</div>
+						<input type="hidden" name="userId" th:value="${session.userId}">
+						<input type="hidden" name="articleId" th:value="${info.articleId}">
+						<input type="submit" class="primary-btn" value="添加评论">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End post-content Area -->
+
+<!-- Start Footer Area -->
+<footer class="footer-area section-gap">
+	<div class="container">
+		<div class="row">
+
+		</div>
+	</div>
+</footer>
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+	<a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="/js/popper.min.js" ></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+<script src="js/easing.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/owl-carousel-thumb.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>

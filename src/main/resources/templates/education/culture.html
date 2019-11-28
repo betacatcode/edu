@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+  <link rel="stylesheet" href="/culture/css/styles-merged.css">
+  <link rel="stylesheet" href="/culture/css/style.min.css">
+  <link rel="stylesheet" href="/culture/css/custom.css">
+
+
+  <!--
+			Google Font
+			============================================= -->
+  <link href="/css/googlecss1" rel="stylesheet">
+  <link href="/css/googlecss2" rel="stylesheet">
+
+  <!--
+          CSS
+          ============================================= -->
+<!--
+
+
+
+
+  -->
+  <!--<link rel="stylesheet" href="/css/animate.min.css">-->
+  <link rel="stylesheet" href="/css/owl.carousel.css">
+  <link rel="stylesheet" href="/css/magnific-popup.css">
+  <link rel="stylesheet" href="/css/nice-select.css">
+  <link rel="stylesheet" href="/css/themify-icons.css">
+  <link rel="stylesheet" href="css/linearicons.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  <!--[if lt IE 9]>
+  <script src="/culture/js/vendor/html5shiv.min.js"></script>
+  <script src="/culture/js/vendor/respond.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<!-- Start Header Area -->
+<header id="header" >
+  <div th:replace="common/bar::topbar"></div>
+</header>
+<!-- End Header Area -->
+
+<!--<div class="probootstrap-loader"></div>-->
+
+<!--<header role="banner" class="probootstrap-header">-->
+  <!--<div class="container">-->
+
+    <!--<a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>-->
+    <!--<div class="mobile-menu-overlay"></div>-->
+
+    <!--<nav role="navigation" class="probootstrap-nav hidden-xs">-->
+      <!--<ul class="probootstrap-main-nav">-->
+        <!--<li class="active"><a href="/">Home</a></li>-->
+      <!--</ul>-->
+      <!--<div class="extra-text visible-xs">-->
+        <!--<a href="#" class="probootstrap-burger-menu"><i>Menu</i></a>-->
+        <!--<h5>Address</h5>-->
+        <!--<p>198 West 21th Street, Suite 721 New York NY 10016</p>-->
+        <!--<h5>Connect</h5>-->
+        <!--<ul class="social-buttons">-->
+          <!--<li><a href="#"><i class="icon-twitter"></i></a></li>-->
+          <!--<li><a href="#"><i class="icon-facebook2"></i></a></li>-->
+          <!--<li><a href="#"><i class="icon-instagram2"></i></a></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</nav>-->
+  <!--</div>-->
+<!--</header>-->
+<!-- END: header -->
+
+<!-- Start Banner Area -->
+<section class="banner-area relative">
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">
+          一方水土养育一方人
+        </h1>
+        <p>乡土，就是儿童成长起来的地方。儿童成长起来的地方，就是他们的家和他们的学校所在地，就是他们的家乡。</p>
+      </div>
+    </div>
+  </div>
+  <div class="rocket-img">
+    <img src="img/rocket.png" alt="">
+  </div>
+</section>
+<!-- End Banner Area -->
+
+<div class="probootstrap-section">
+  <div class="container text-center">
+    <div class="row probootstrap-gutter16">
+      <div th:each="culture:${cultures1}" th:class="'col-md-'+${culture.width}+' probootstrap-animate'" data-animate-effect="fadeIn">
+        <div >
+          <a th:href="@{/education/singleCulture(id=${culture.id})}" class="img-bg" th:style="'background-image: url(img/elements/'+${culture.img}+');'">
+            <div class="probootstrap-photo-details">
+              <h2>[[${culture.title}]]</h2>
+              <p>[[${culture.pos}]]</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div th:each="culture:${cultures2}" th:class="'col-md-'+${culture.width}+' probootstrap-animate'" data-animate-effect="fadeIn">
+        <div >
+          <a th:href="@{/education/singleCulture(id=${culture.id})}" class="img-bg" th:style="'background-image: url(img/elements/'+${culture.img}+');'">
+            <div class="probootstrap-photo-details">
+              <h2>[[${culture.title}]]</h2>
+              <p>[[${culture.pos}]]</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div th:each="culture:${cultures3}" th:class="'col-md-'+${culture.width}+' probootstrap-animate'" data-animate-effect="fadeIn">
+        <div >
+          <a th:href="@{/education/singleCulture(id=${culture.id})}" class="img-bg" th:style="'background-image: url(img/elements/'+${culture.img}+');'">
+            <div class="probootstrap-photo-details">
+              <h2>[[${culture.title}]]</h2>
+              <p>[[${culture.pos}]]</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row probootstrap-gutter16">
+
+    </div>
+
+    <div class="row probootstrap-gutter16">
+
+    </div>
+
+
+  </div>
+</div>
+
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+</div>
+
+<script src="/js/vendor/jquery-2.2.4.min.js"></script>
+<script src="/js/popper.min.js" ></script>
+<script src="/js/vendor/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+<script src="/js/easing.min.js"></script>
+<script src="/js/hoverIntent.js"></script>
+<script src="/js/superfish.min.js"></script>
+<script src="/js/jquery.ajaxchimp.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/owl-carousel-thumb.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/jquery.nice-select.min.js"></script>
+<script src="/js/parallax.min.js"></script>
+<script src="/js/waypoints.min.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.counterup.min.js"></script>
+<script src="/js/mail-script.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script src="/culture/js/scripts.min.js"></script>
+<script src="/culture/js/main.min.js"></script>
+<script src="/culture/js/custom.js"></script>
+
+</body>
+</html>

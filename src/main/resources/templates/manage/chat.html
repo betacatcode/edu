@@ -1,0 +1,140 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>chat UI</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="https://blog.csdn.net/q475254344">
+    <link href="/css/chatcss.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+
+</head>
+<script>
+    document.getElementsByTagName('body').height=window.innerHeight;
+</script>
+<script src="/js/jquery.min.js"></script>
+<body class="box">
+
+    <input type="hidden" id="myId" th:value="${session.userId}">
+    <input type="hidden" id="otherId" value="0">
+    <script type="text/javascript" th:inline="javascript">
+
+        setInterval("polling()",1000);
+        function polling() {
+            var otherId=$("#otherId").val();
+            var myId=$("#myId").val();
+            if(otherId!=0){
+                $.ajax({
+                        url:"/manage/getMsgById",
+                        type:"post",
+                        data:"otherId="+otherId+"&myId="+myId,
+                        success:function (data) {
+                            buildInformation(data,otherId,myId);
+                        }
+                    }
+                )
+            }
+        }
+        
+        function buildInformation(data,otherId,myId) {
+            $("#main").empty();
+
+            var msgs=data["msgs"];
+            var myImg=data["myImg"];
+            var otherImg=data["otherImg"];
+
+            var ul=$("<ul id='msgul'></ul>")
+            for(i=0;i<msgs.length;i++){
+
+                if(myId==msgs[i].sendId){
+                    var li=$("<li class='msgleft'></li>")
+                    var img=$("<img style='border-radius: 20px; vertical-align: top;width: 40px;height: 40px' src="+"'/path/"+myImg+"'>")
+                }else{
+                    var li=$("<li class='msgright'></li>")
+                    var img=$("<img style='border-radius: 20px; vertical-align: top;;width: 40px;height: 40px' src="+"'/path/"+otherImg+"'>")
+                }
+                var msg=$("<p class='msgcard'>"+msgs[i].content+"</p>");
+
+                li.append(img);
+                li.append(msg);
+                ul.append(li)
+            }
+            $("#main").append(ul);
+            $('#main')[0].scrollTop =$('#main')[0].scrollHeight;
+        }
+
+        function selectSender(otherId,myId) {
+            $("#sendBtn").attr("onclick","sendMsg("+otherId+","+myId+")")
+            $("#otherId").attr("value",otherId)
+            $.ajax({
+                    url:"/manage/getMsgById",
+                    type:"post",
+                    data:"otherId="+otherId+"&myId="+myId,
+                    success:function (data) {
+                        buildInformation(data,otherId,myId);
+                    }
+                }
+            )
+
+        }
+        function sendMsg(otherId,myId) {
+            var content=$("#sendText").val()
+            if(otherId!=myId&&content!=null){
+                $.ajax({
+                    url:"/manage/saveMsg",
+                    type:"post",
+                    data:"receiveId="+otherId+"&sendId="+myId+"&content="+content,
+                    success:function (data) {
+                        $("#sendText").val()
+                        buildInformation(data,otherId,myId);
+                    }
+                })
+            }
+        }
+            
+    </script>
+    <div class="leftbar">
+        <ul>
+            <li><a class="fas fa-users" href="/manage/index" style="color: white">BACK</a></li>
+            <!--<li><i class="fas fa-users"></i></li>-->
+            <!--<li><i class="fas fa-smile"></i></li>-->
+            <!--<li><i class="fas fa-envelope"></i></li>-->
+            <!--<li><i class="fas fa-bell"></i></li>-->
+            <!--<li><i class="fas fa-calendar-alt"></i></li>-->
+            <!--<li><i class="fas fa-power-off"></i></li>-->
+        </ul>
+    </div>
+    <div class="container">
+        <div class="chatbox">
+            <div class="chatleft">
+                <!--<div class="top">-->
+                    <!--<i class="fas fa-bars" style="font-size: 1.4em"></i>-->
+                    <!--<input type="text" placeholder="search" style="width: 140px; height: 36px; margin-left: 25px;">-->
+                    <!--<button class="searchbtn"><i class="fas fa-search"></i></button>-->
+                <!--</div>-->
+                <div class="center">
+                    <ul>
+
+                        <li th:each="sender:${senders}">
+                            <img style="border-radius: 20px; height:50px;width:50px;vertical-align: middle;" th:src="${'/path/'+sender.img}">
+                            <a href="#" th:onclick="|selectSender(${sender.userId},${session.userId})|">[[${sender.userName}]]</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="chatright">
+                <div class="top">
+                    <img id="myImg" style="border-radius: 20px; vertical-align: middle;height:50px;width:50px"  th:src="@{'/path/'+${myImg}}">
+                    <span style="margin-left: 20px;">[[${myName}]]</span>
+                    <i class="fas fa-ellipsis-v" style="font-size: 1.4em; position: absolute; right: 20px; color: gray;"></i>
+                </div>
+                <div class="center" id="main">
+                </div>
+                <div class="footer">
+                    <textarea maxlength="800" id="sendText" rows="5" cols="40" style="width: 100%; resize: none; border: none; " placeholder="请在此输入要发送的内容..."></textarea>
+                    <button class="sendbtn" id="sendBtn" th:onclick="|sendMsg(1,${session.userId})|">发送</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Blog</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+
+
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header" >
+		<div th:replace="common/bar::topbar"></div>
+	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">
+						博客中心
+					</h1>
+					<div class="link-nav">
+						<span class="box">
+							<a href="/">首页</a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="#">博客中心</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rocket-img">
+			<img src="img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!-- Start top-category-widget Area -->
+	<section class="top-category-widget-area pt-90 pb-90 " id="mainView">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="single-cat-widget">
+						<div class="content relative">
+							<div class="overlay overlay-bg"></div>
+							<a th:href="@{/blog/searchByTag(tagId=1)}" target="_blank">
+								<div class="thumb">
+									<img class="content-image img-fluid d-block mx-auto" src="img/blog/xt.jpg" alt="">
+								</div>
+								<div class="content-details">
+									<h4 class="content-title mx-auto text-uppercase">乡土</h4>
+									<span></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-cat-widget">
+						<div class="content relative">
+							<div class="overlay overlay-bg"></div>
+							<a th:href="@{/blog/searchByTag(tagId=33)}" target="_blank">
+								<div class="thumb">
+									<img class="content-image img-fluid d-block mx-auto" src="img/blog/wh.jpg" alt="">
+								</div>
+								<div class="content-details">
+									<h4 class="content-title mx-auto text-uppercase">文化</h4>
+									<span></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="single-cat-widget">
+						<div class="content relative">
+							<div class="overlay overlay-bg"></div>
+							<a th:href="@{/blog/searchByTag(tagId=3)}" target="_blank">
+								<div class="thumb">
+									<img class="content-image img-fluid d-block mx-auto" src="img/blog/jy.jpg" alt="">
+								</div>
+								<div class="content-details">
+									<h4 class="content-title mx-auto text-uppercase">教育</h4>
+									<span></span>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End top-category-widget Area -->
+
+	<!-- Start post-content Area -->
+	<section class="post-content-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 posts-list">
+					<div th:replace="common/bar::articlesList"></div>
+
+					<nav class="blog-pagination justify-content-center d-flex">
+						<ul class="pagination">
+							<li class="page-item">
+								<a th:if="${info.pageNum}==1" th:href="@{/blog/home(pageNum=1)}" class="page-link" aria-label="Previous">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-left"></span>
+									</span>
+								</a>
+								<a th:if="${info.pageNum}!=1" th:href="@{/blog/home(pageNum=${info.pageNum}-1)}" class="page-link" aria-label="Previous">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-left"></span>
+									</span>
+								</a>
+							</li>
+
+							<li class="page-item" th:if="${info.pages}!=0" th:each="pageNum:${#numbers.sequence(1,info.pages)}">
+								<a th:href="@{/blog/home(pageNum=${pageNum})}"  class="page-link">[[${pageNum}]]</a>
+							</li>
+
+							<li class="page-item">
+								<a th:if="${info.pageNum}!=${info.pages}" th:href="@{/blog/home(pageNum=${info.pageNum}+1)}" class="page-link" aria-label="Next">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-right"></span>
+									</span>
+								</a>
+								<a th:if="${info.pageNum}==${info.pages}" th:href="@{/blog/home(pageNum=${info.pages})}" class="page-link" aria-label="Next">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-right"></span>
+									</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="col-lg-4 sidebar-widgets">
+					<div class="widget-wrap">
+						<div class="single-sidebar-widget search-widget">
+							<form class="search-form" th:action="@{/blog/searchByTitle}">
+								<input placeholder="搜索标题" name="title" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = '搜索标题'">
+								<button type="submit"><i class="fa fa-search"></i></button>
+							</form>
+						</div>
+						<div class="single-sidebar-widget popular-post-widget">
+							<h4 class="popular-title">热推</h4>
+							<div class="popular-post-list">
+
+								<div th:each="popular:${populars}" class="single-post-list d-flex flex-row align-items-center">
+									<!--<div class="thumb">-->
+										<!--<img class="img-fluid" th:src="${'/path/'+popular.img}" alt="">-->
+									<!--</div>-->
+									<div class="details">
+										<a th:href="@{/viewMore(articleId=${popular.articleId})}"><h6>[[${popular.title}]]</h6></a>
+										<p>[[${popular.viewNum}]]次浏览</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--<div class="single-sidebar-widget ads-widget">-->
+							<!--<a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>-->
+						<!--</div>-->
+						<div class="single-sidebar-widget post-category-widget">
+							<h4 class="category-title">分区</h4>
+							<ul class="cat-list">
+								<li th:each="tag:${tags}">
+									<a th:href="@{'/blog/searchByTag?tagId='+${tag.tagId}}" class="d-flex justify-content-between">
+										<p>[[${tag.tagName}]]</p>
+										<p>[[${tag.tagNum}]]</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="single-sidebar-widget tag-cloud-widget">
+							<h4 class="tagcloud-title">标签</h4>
+							<ul>
+								<li th:each="tag:${tags}"><a th:href="@{'/blog/searchByTag?tagId='+${tag.tagId}}">[[${tag.tagName}]]</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End post-content Area -->
+
+	<!-- Start Footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row"></div>
+		</div>
+	</footer>
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script language="javascript" >
+        $(function () {
+            $("html,body").animate({scrollTop: $("#mainView").offset().top}, 500);
+        });
+	 </script>
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/js/popper.min.js" ></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/owl-carousel-thumb.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>

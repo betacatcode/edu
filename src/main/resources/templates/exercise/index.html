@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>练习</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="/css/linearicons.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/nice-select.css">
+	<link rel="stylesheet" href="/css/animate.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header" >
+		<div th:replace="common/bar::topbar"></div>
+	</header>
+	<!-- End Header Area -->
+
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<div class="row"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start post-content Area -->
+		<section class="post-content-area" id="top">
+			<div class="container" >
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<form id="exForm">
+							<div th:each="p:${problems}" >
+								<input type="hidden" th:id="'i-'+${p['pid']}" th:value="${p['problem'].id}">
+								<div class="form-group">
+									<label><h3>[[${p['pid']}]]/10</h3></label>
+								</div>
+								<div class="form-group">
+									<label><h2>[[${p['problem'].problem}]]</h2></label>
+								</div>
+								<div class="form-group">
+									<img th:src="'/img/exercise/'+${p['problem'].img}" style="width: 60%;height: 60%">
+								</div>
+								<div class="form-group" th:id="'group-'+${p['pid']}">
+									<div class="radio">
+										<label>
+											<input type="radio" th:name="'n-'+${p['pid']}" value="a">
+											[[${p['problem'].a}]]
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" th:name="'n-'+${p['pid']}" value="b">
+											[[${p['problem'].b}]]
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" th:name="'n-'+${p['pid']}" value="c">
+											[[${p['problem'].c}]]
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" th:name="'n-'+${p['pid']}" value="d">
+											[[${p['problem'].d}]]
+										</label>
+									</div>
+								</div>
+								<hr>
+
+							</div>
+
+
+							<button type="button" onclick="checkForm()" class="btn btn-default">提交</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End post-content Area -->
+
+		<div class="rocket-img">
+			<img src="/img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+	<!-- Start top-category-widget Area -->
+	<section class="top-category-widget-area pt-90 pb-90 " id="mainView">
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
+	</section>
+	<!-- End top-category-widget Area -->
+
+	<!-- Start post-content Area -->
+	<section class="post-content-area">
+		<div class="container">
+
+		</div>
+	</section>
+	<!-- End post-content Area -->
+
+	<!-- Start Footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row"></div>
+		</div>
+	</footer>
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<form id="hiddenForm" action="/exercise/calScore" method="post">
+		<input type="hidden" name="ids" id="hiddenId">
+		<input type="hidden" name="ans" id="hiddenAns">
+	</form>
+
+	<script src="/js/vendor/jquery-2.2.4.min.js"></script>
+	<script language="JavaScript">
+		function checkForm() {
+		    var ids="",ans="";
+            for(i=1;i<=10;i++){
+                var v = $("input[name='n-"+i+"']:checked").val()
+				if(typeof(v)=="undefined"){
+                    alert("第"+i+"题还未选择!");
+                    return;
+				}else {
+                    ans+=v;
+                    if(i!=10)
+                        ans+=','
+				}
+			}
+
+			console.log(ans)
+
+            for(i=1;i<=10;i++){
+		        ids+=$("#i-"+i).val()
+				if(i!=10)
+				    ids+=','
+			}
+			console.log(ids)
+
+
+			$("#hiddenId").attr("value",ids);
+            $("#hiddenAns").attr("value",ans);
+
+            $("#hiddenForm").submit();
+        }
+	</script>
+
+	<script language="javascript" >
+        $(function () {
+            $("html,body").animate({scrollTop: $("#top").offset().top}, 500);
+        });
+	 </script>
+	<script src="/js/popper.min.js" ></script>
+	<script src="/js/vendor/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+	<script src="/js/easing.min.js"></script>
+	<script src="/js/hoverIntent.js"></script>
+	<script src="/js/superfish.min.js"></script>
+	<script src="/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/owl-carousel-thumb.min.js"></script>
+	<script src="/js/jquery.sticky.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/parallax.min.js"></script>
+	<script src="/js/waypoints.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/jquery.counterup.min.js"></script>
+	<script src="/js/mail-script.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+
+</html>

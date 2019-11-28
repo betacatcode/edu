@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>个人空间</title>
+
+    <!--
+            Google Font
+            ============================================= -->
+    <link href="/css/googlecss1" rel="stylesheet">
+    <link href="/css/googlecss2" rel="stylesheet">
+
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="/css/themify-icons.css">
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="/js/jquery.min.js"></script>
+</head>
+
+<body>
+
+<!-- Start Header Area -->
+<header id="header" >
+    <div th:replace="common/bar::topbar"></div>
+</header>
+<!-- End Header Area -->
+
+
+<!-- Start Banner Area -->
+<section class="banner-area relative">
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    个人空间
+                </h1>
+                <div class="link-nav">
+						<span class="box">
+							<a href="/">首页</a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="#">个人空间</a>
+						</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rocket-img">
+        <img src="img/rocket.png" alt="">
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!-- Start post-content Area -->
+<section class="post-content-area single-post-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div th:replace="common/bar::articlesList"></div>
+
+                <nav class="blog-pagination justify-content-center d-flex">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a th:if="${info.pageNum}==1" th:href="@{/blog/home(pageNum=1)}" class="page-link" aria-label="Previous">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-left"></span>
+									</span>
+                            </a>
+                            <a th:if="${info.pageNum}!=1" th:href="@{/blog/home(pageNum=${info.pageNum}-1)}" class="page-link" aria-label="Previous">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-left"></span>
+									</span>
+                            </a>
+                        </li>
+
+                        <li class="page-item" th:if="${info.pages}!=0" th:each="pageNum:${#numbers.sequence(1,info.pages)}">
+                            <a th:href="@{/blog/home(pageNum=${pageNum})}"  class="page-link">[[${pageNum}]]</a>
+                        </li>
+
+                        <li class="page-item">
+                            <a th:if="${info.pageNum}!=${info.pages}" th:href="@{/blog/home(pageNum=${info.pageNum}+1)}" class="page-link" aria-label="Next">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-right"></span>
+									</span>
+                            </a>
+                            <a th:if="${info.pageNum}==${info.pages}" th:href="@{/blog/home(pageNum=${info.pages})}" class="page-link" aria-label="Next">
+									<span aria-hidden="true">
+										<span class="lnr lnr-chevron-right"></span>
+									</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-4 sidebar-widgets">
+                <div class="widget-wrap">
+                    <div class="single-sidebar-widget search-widget">
+                        <form class="search-form" action="/findUserSpace">
+                            <input placeholder="搜索用户名" name="userName" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = '搜索用户名'">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="single-sidebar-widget user-info-widget">
+                        <img style="height: 200px;width: 200px" th:src="${'/path/'+user.img}" alt="">
+                        <a href="#"><h4> [[${user.userName}]]</h4></a>
+                        <p>
+                            [[${user.profile}]]
+                        </p>
+                    </div>
+
+                    <!--<div class="single-sidebar-widget ads-widget">-->
+                        <!--<a href="#"><img class="img-fluid" src="img/blog/ads-banner.jpg" alt=""></a>-->
+                    <!--</div>-->
+                    <div th:if="${session.userId}!=${user.userId}" class="single-sidebar-widget newsletter-widget">
+                        <h4 class="newsletter-title">私信</h4>
+                        <p>
+                            有什么想说的吗
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="col-autos">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <form id="msgForm" action="/getSendMsg" type="post" class="form-box d-flex justify-content-between">
+                                        <input type="hidden" name="sendId" th:value="${session.userId}">
+                                        <input type="hidden" name="receiveId" th:value="${user.userId}">
+                                        <input type="text" name="content" class="form-control"  placeholder="发送消息" onfocus="this.placeholder = ''"
+                                               onblur="this.placeholder = '发送消息'">
+                                        <a class="bbtns" onclick="document:msgForm.submit()">Send</a>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End post-content Area -->
+
+<!-- Start Footer Area -->
+<footer class="footer-area section-gap">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+</footer>
+<!-- End Footer Area -->
+
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top">
+    <a title="Go to Top" href="#"></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+
+<script src="js/vendor/jquery-2.2.4.min.js"></script>
+<script src="/js/popper.min.js" ></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+<script src="js/easing.min.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.min.js"></script>
+<script src="js/jquery.ajaxchimp.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/owl-carousel-thumb.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/parallax.min.js"></script>
+<script src="js/waypoints.min.js"></script>
+<script src="js/wow.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script src="js/mail-script.js"></script>
+<script src="js/main.js"></script>
+</body>
+
+</html>

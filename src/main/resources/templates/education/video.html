@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>乡土文化教育--精彩视频</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header" >
+		<div th:replace="common/bar::topbar"></div>
+	</header>
+	<!-- End Header Area -->
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">
+						一方水土养育一方人
+					</h1>
+					<!-- <p>
+							乡土文化既是教育后人、了解历史、凝聚国民、鼓舞人心、陶冶情操、净化灵魂的载体，又具有重要的经济价值；它既是团结凝聚广大人民群众的重要纽带，也是长久的文化资源和文化资本。
+						</p> -->
+					<p>乡土，就是儿童成长起来的地方。儿童成长起来的地方，就是他们的家和他们的学校所在地，就是他们的家乡。</p>
+					<div class="link-nav">
+						<span class="box">
+							<a href="/">首页</a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="#">精彩视频</a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rocket-img">
+			<img src="img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+
+	<!--Start Feature Area -->
+	<section class="feature-area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="section-title text-center">
+						<h1>乡土文化学习之精彩视频</h1>
+						<p>乡土文化是中华民族得以繁衍发展的精神寄托和智慧结晶，是区别于任何其它文明的唯一特征，是民族凝聚力和进取心的真正动因!不同的地方有不同的乡土文化，让我们跟着下面的这些视频一起来学习各地不同的文化特色。</p>
+					</div>
+				</div>
+			</div>
+			<div  class="feature-inner row">
+				<div th:each="video:${videos}" class="col-lg-4 col-md-6">
+					<div class="feature-item">
+						<video id="video1" width="300" controls="controls">
+							<source th:src="@{'img/video/'+${video.name}}" type="video/mp4"/>
+						</video>
+						<p>[[${video.title}]]</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Feature Area -->
+
+	<!-- End Courses Area -->
+	<!-- Start Footer Area -->
+	<!--<footer class="footer-area">-->
+		<!--<div class="container">-->
+			<!--<div class="footer-bottom row align-items-center">-->
+				<!--<p class="footer-text m-0 col-lg-12 col-md-12">-->
+					<!--Copyright &copy;<script>document.write(new Date().getFullYear());</script> -designed by the group of wxx. &nbsp&nbsp&nbsp&nbsp&nbsp Tel:88888888-->
+				<!--</p>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</footer>-->
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/js/popper.min.js" ></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/owl-carousel-thumb.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

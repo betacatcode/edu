@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Educature Education</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="css/linearicons.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="css/nice-select.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header" >
+		<div th:replace="common/bar::topbar"></div>
+	</header>
+	<!-- End Header Area -->
+
+
+	<!-- Start Banner Area -->
+	<section class="home-banner-area relative">
+		<div class="container">
+			<div class="row fullscreen d-flex align-items-center justify-content-center">
+				<div class="banner-content col-lg-8 col-md-12">
+					<h1 class="wow fadeIn" data-wow-duration="4s">乡土文化 <br> 教育</h1>
+					<p class="text-white">
+						乡土文化是中华民族得以繁衍发展的精神寄托和智慧结晶，是区别于任何其它文明的唯一特征，是民族凝聚力和进取心的真正动因！
+					</p>
+
+					<div class="input-wrap">
+						<form action="/searchAll" class="form-box d-flex justify-content-between">
+							<input type="text" placeholder="用户/博文/视频" class="form-control" name="key">
+							<button type="submit" class="btn search-btn" style="background: linear-gradient(90deg, #21c22b 0%, #3cbb6c 100%);">搜索</button>
+						</form>
+					</div>
+					<h4 class="text-white">热门标签</h4>
+
+					<div class="courses pt-20">
+						<a th:each="tag:${tags}" th:href="@{'/blog/searchByTag?tagId='+${tag.tagId}}" data-wow-duration="1s" data-wow-delay=".3s" class="primary-btn transparent mr-10 mb-10 wow fadeInDown">
+						[[${tag.tagName}]]</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rocket-img">
+			<img src="img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+
+	<!-- Start About Area -->
+	<section class="about-area section-gap">
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-5 col-md-6 about-left">
+					<img class="img-fluid" src="img/about.jpg" alt="">
+				</div>
+				<div class="offset-lg-1 col-lg-6 offset-md-0 col-md-12 about-right">
+					<h1>
+						乡土文化教育<br> <h3>摘自：《王小平：所有的地方都有自己的乡土文化》</h3><br>
+					</h1>
+					<div class="wow fadeIn" data-wow-duration="1s">
+						<p>
+							乡土文化教育不是发布光荣榜，不是名品博览会，也不是猎奇大赛，她是认识家乡的学习过程，是一个学习和进步的路径，是一个有温度、有爱的学习活动，是儿童成长的必由之路。她拣选我们生活中那些曾经有过、或仍还持续着的生活智慧，包括我们乡里传统的美德，我们不断发展的生计活动，我们社群的历史留给我们的精神财富和物质财富，我们的山川河流土地林木和我们生活的关系等等，把我们家乡的生活，作为课程资源，和学生们一起讨论，一起了解，一起挖掘，让家乡的形象在孩子们心中明晰起来，让孩子们的心有个落地生根的地方，让热爱家乡，热爱生活，热爱自然的情愫在孩子们心里升腾起来。说到底，就是把家乡的生活作为孩子们成长的课堂，让家乡的水土成为滋养孩子成长的营养。
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End About Area -->
+
+
+	<!-- Start province  Area -->
+	<section class="courses-area section-gap">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5 about-right">
+					<h1>
+						一方水土养一方人
+					</h1>
+					<div class="wow fadeIn" data-wow-duration="1s">
+						<p>
+							一方水土，或贫瘠，或富饶，或大陆，或岛屿，依附在土地上生存的人“靠山吃山，靠水吃水”；一方水土也浸润着一方文化，水土环境，人文环境的不同，可能对人的性格、生活方式、思想观念也会产生不同，但更能浸润的可能是不同的文化了。
+						</p>
+					</div>
+				</div>
+				<div class="offset-lg-1 col-lg-6">
+					<div class="courses-right">
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<ul class="courses-list">
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay=".1s">
+											<i class="fa fa-hand-o-right"></i> 广东省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay=".3s">
+											<i class="fa fa-hand-o-right"></i> 江苏省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay=".5s">
+											<i class="fa fa-hand-o-right"></i> 山东省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay=".7s">
+											<i class="fa fa-hand-o-right"></i> 浙江省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay=".9s">
+											<i class="fa fa-hand-o-right"></i> 河南省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay="1.1s">
+											<i class="fa fa-hand-o-right"></i> 四川省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInLeft" href="courses.html" data-wow-duration="1s" data-wow-delay="1.3s">
+											<i class="fa fa-hand-o-right"></i> 湖北省
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="col-lg-6 col-md-6 col-sm-12">
+								<ul class="courses-list">
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay="1.3s">
+											<i class="fa fa-hand-o-right"></i> 湖南省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay="1.1s">
+											<i class="fa fa-hand-o-right"></i> 河北省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay=".9s">
+											<i class="fa fa-hand-o-right"></i> 福建省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay=".7s">
+											<i class="fa fa-hand-o-right"></i> 上海市
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay=".5s">
+											<i class="fa fa-hand-o-right"></i> 北京市
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay=".3s">
+											<i class="fa fa-hand-o-right"></i> 安徽省
+										</a>
+									</li>
+									<li>
+										<a class="wow fadeInRight" href="courses.html" data-wow-duration="1s" data-wow-delay=".1s">
+											<i class="fa fa-hand-o-right"></i> 辽宁省
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End province Area -->
+
+	<!-- Start Faculty Area -->
+	<section class="faculty-area section-gap">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8">
+					<div class="section-title text-center">
+						<h1>乡土文化教育下走出的杰出人物</h1>
+						<p>
+							传统中国人具有浓厚的乡土情结,这种情结深深地扎在中国人的心中,影响着中国人的整个心灵世界。
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center d-flex align-items-center">
+				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
+					<div class="thumb d-flex justify-content-center">
+						<img class="img-fluid" src="img/people/余秋雨.jpg" alt="">
+					</div>
+					<div class="meta-text text-center">
+						<a href="https://baike.baidu.com/item/%E4%BD%99%E7%A7%8B%E9%9B%A8/183732?fr=aladdin">余秋雨</a><br>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
+							<p>
+								1946年8月23日生于浙江省余姚县，现任澳门科技大学人文艺术学院院长。中国著名文化学者，理论家、文化史学家、散文家。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
+					<div class="thumb d-flex justify-content-center">
+						<img class="img-fluid" src="img/people/俞敏洪.jpg" alt="">
+					</div>
+					<div class="meta-text text-center">
+						<a href="https://baike.baidu.com/item/%E4%BF%9E%E6%95%8F%E6%B4%AA/174986?fr=aladdin">俞敏洪</a><br>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+							<p>
+								1962年10月15日出生于江苏省江阴市夏港街道，新东方教育集团创始人。担任新东方教育集团董事长、洪泰基金联合创始人等职。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
+					<div class="thumb d-flex justify-content-center">
+						<img class="img-fluid" src="img/people/莫言.jpg" alt="">
+					</div>
+					<div class="meta-text text-center">
+						<a href="https://baike.baidu.com/item/%E8%8E%AB%E8%A8%80/941736?fr=aladdin">莫言</a><br>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
+							<p>
+								1955年2月17日出生于山东高密，中国当代著名作家。充满着“怀乡”情感，被归类为“寻根文学”作家，2012年莫言获得诺贝尔文学奖。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 col-sm-12 single-faculty">
+					<div class="thumb d-flex justify-content-center">
+						<img class="img-fluid" src="img/people/李嘉诚.jpg" alt="">
+					</div>
+					<div class="meta-text text-center">
+						<a href="https://baike.baidu.com/item/%E6%9D%8E%E5%98%89%E8%AF%9A/1044?fr=aladdin">李嘉诚</a><br>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+							<p>
+								1928年7月29日出生于广东潮州潮安，香港首富、“全球十大最具创意和成功商人”之一，被称为商界领袖,又致力公益事业。为中国精神血液。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Faculty Area -->
+
+
+
+	<!-- Start Footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+		</div>
+	</footer>
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/js/popper.min.js" ></script>
+	<script src="js/vendor/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+	<script src="js/easing.min.js"></script>
+	<script src="js/hoverIntent.js"></script>
+	<script src="js/superfish.min.js"></script>
+	<script src="js/jquery.ajaxchimp.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/owl-carousel-thumb.min.js"></script>
+	<script src="js/jquery.sticky.js"></script>
+	<script src="js/jquery.nice-select.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script src="js/waypoints.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.counterup.min.js"></script>
+	<script src="js/mail-script.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>

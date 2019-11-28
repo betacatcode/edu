@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+    <link rel="stylesheet" href="/culture/css/styles-merged.css">
+    <link rel="stylesheet" href="/culture/css/style.min.css">
+    <link rel="stylesheet" href="/culture/css/custom.css">
+
+    <!--[if lt IE 9]>
+      <script src="/culture/js/vendor/html5shiv.min.js"></script>
+      <script src="/culture/js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <!-- START: header -->
+
+  <div class="probootstrap-loader"></div>
+
+  <header role="banner" class="probootstrap-header">
+    <div class="container">
+
+      <a href="#" class="probootstrap-burger-menu visible-xs" ><i>Menu</i></a>
+      <div class="mobile-menu-overlay"></div>
+
+      <nav role="navigation" class="probootstrap-nav hidden-xs" style="float: left">
+        <ul class="probootstrap-main-nav">
+          <li class="active"><a style="font-size: 22px" href="/education/culture">Back</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- END: header -->
+
+  <div class="probootstrap-section">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 mb40 text-center">
+          <h2>[[${culture.title}]]</h2>
+          <p>[[${culture.pos}]]</p>
+        </div>
+        <div class="col-md-12">
+          <p>[[${culture.content}]]</p>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <p><a th:href="'img/elements/'+${culture.img}" class="image-popup"><img th:src="'img/elements/'+${culture.img}" class="img-responsive" alt="img"></a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+  </div>
+
+
+  <script src="/culture/js/scripts.min.js"></script>
+  <script src="/culture/js/main.min.js"></script>
+  <script src="/culture/js/custom.js"></script>
+
+  </body>
+</html>

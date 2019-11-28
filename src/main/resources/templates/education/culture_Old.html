@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/fav.png">
+    <!-- Author Meta -->
+    <meta name="author" content="codepixer">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>乡土文化教育--各地文化介绍</title>
+
+    <!--
+            Google Font
+            ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500i" rel="stylesheet">
+
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="css/linearicons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/nice-select.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<!-- Start Header Area -->
+<header id="header" >
+    <div th:replace="common/bar::topbar"></div>
+</header>
+<!-- End Header Area -->
+
+
+<!-- Start Banner Area -->
+<section class="banner-area relative">
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    一方水土养育一方人
+                </h1>
+                <p>乡土，就是儿童成长起来的地方。儿童成长起来的地方，就是他们的家和他们的学校所在地，就是他们的家乡。</p>
+                <div class="link-nav">
+						<span class="box">
+							<a href="culture.html">首页</a>
+							<i class="lnr lnr-arrow-right"></i>
+							<a href="elements.html">文化介绍</a>
+						</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rocket-img">
+        <img src="img/rocket.png" alt="">
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!-- Start Align Area -->
+<div class="whole-wrap" style="width: 80%;margin: 0 auto">
+        <div class="section-top-border">
+            <div class="row gallery-item">
+                <div class="col-md-4" th:each="culture:${cultures}">
+                    <a class="img-pop-up">
+                        <div class="single-gallery-image" th:style="'background: url(img/elements/'+${culture.img}+');'">
+                            <input type="hidden" th:id="'title'+${culture.id}" th:value="${culture.title}">
+                            <input type="hidden" th:id="'content'+${culture.id}" th:value="${culture.content}">
+                            <input type="hidden" th:id="'pos'+${culture.id}" th:value="${culture.pos}">
+
+                            <a data-toggle="modal" th:onclick="|showInfo(${culture.id})|" data-target="#myModal" class="intro">[[${culture.title}]]</a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Align Area -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modelTitle"></h4>
+
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+                    <!--&times;-->
+                <!--</button>-->
+            </div>
+            <div class="modal-header">
+                <h5 class="modal-title"  id="modelPos"></h5>
+            </div>
+            <div class="modal-body" id="modelBody">
+                在这里添加一些文本
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script type="text/javascript">
+    function showInfo(id) {
+        var title=$("#title"+id).val();
+        $("#modelTitle").text(title)
+        var body=$("#content"+id).val()
+        $("#modelBody").text(body)
+        var pos=$("#pos"+id).val()
+        $("#modelPos").text("位置:"+pos)
+    }
+</script>
+<!-- ####################### Start Scroll to Top Area ####################### -->
+<div id="back-top ">
+    <a title="Go to Top " href="# "></a>
+</div>
+<!-- ####################### End Scroll to Top Area ####################### -->
+
+<script src="js/vendor/jquery-2.2.4.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q "
+        crossorigin="anonymous "></script>
+<script src="js/vendor/bootstrap.min.js "></script>
+<script type="text/javascript " src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA "></script>
+<script src="js/easing.min.js "></script>
+<script src="js/hoverIntent.js "></script>
+<script src="js/superfish.min.js "></script>
+<script src="js/jquery.ajaxchimp.min.js "></script>
+<script src="js/jquery.magnific-popup.min.js "></script>
+<script src="js/owl.carousel.min.js "></script>
+<script src="js/owl-carousel-thumb.min.js "></script>
+<script src="js/jquery.sticky.js "></script>
+<script src="js/jquery.nice-select.min.js "></script>
+<script src="js/parallax.min.js "></script>
+<script src="js/waypoints.min.js "></script>
+<script src="js/wow.min.js "></script>
+<script src="js/jquery.counterup.min.js "></script>
+<script src="js/mail-script.js "></script>
+<script src="js/main.js "></script>
+</body>
+
+</html>

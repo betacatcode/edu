@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zxx" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="/img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>练习</title>
+
+	<!--
+			Google Font
+			============================================= -->
+	<link href="/css/googlecss1" rel="stylesheet">
+	<link href="/css/googlecss2" rel="stylesheet">
+
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="/css/themify-icons.css">
+	<link rel="stylesheet" href="/css/linearicons.css">
+	<link rel="stylesheet" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.css">
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+	<link rel="stylesheet" href="/css/nice-select.css">
+	<link rel="stylesheet" href="/css/animate.min.css">
+	<link rel="stylesheet" href="/css/owl.carousel.css">
+	<link rel="stylesheet" href="/css/main.css">
+
+
+</head>
+
+<body>
+
+	<!-- Start Header Area -->
+	<header id="header" >
+		<div th:replace="common/bar::topbar"></div>
+	</header>
+	<!-- End Header Area -->
+
+
+	<!-- Start Banner Area -->
+	<section class="banner-area relative">
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<div class="row"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Start post-content Area -->
+		<section class="post-content-area" id="top">
+			<div class="container" >
+				<br>
+				<br>
+				<br>
+				<br>
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-4">
+						<label><h3>你的最终得分是:</h3></label>
+						<label><h1 style="color:#ff3635;">[[${score}]]</h1></label>
+
+						<label th:if="${score}<60"><h3>,要加油~</h3></label>
+						<label th:if="${score}>=60 and ${score}<80"><h3>,再接再厉</h3></label>
+						<label th:if="${score}>=80"><h3>,优秀!</h3></label>
+						<hr>
+					</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-success" onclick="showWrong()">
+							查看错题
+						</button>
+					</div>
+				</div>
+
+				<div class="row" id="pig">
+					<div class="col-md-3"></div>
+					<div class="col-md-4">
+						<img src="/img/exercise/peiqi.jpg" style="width: 500px;height: 271px">
+						<hr>
+					</div>
+				</div>
+
+				<div class="row" id="wrong" style="display: none">
+					<div class="col-md-3"></div>
+					<div class="col-md-6">
+						<div th:each="p:${problems}" >
+							<div class="form-group">
+								<label><h4>[[${p['pid']}]]/[[${wrongCount}]]</h4></label>
+							</div>
+							<div class="form-group">
+								<label><h3>[[${p['problem'].problem}]]</h3></label>
+							</div>
+							<div class="form-group">
+								<label><h4 style="color: #00FF00">正确答案:[[${p['rightAns']}]]</h4></label>
+							</div>
+							<div class="form-group">
+								<img th:src="'/img/exercise/'+${p['problem'].img}" style="width: 60%;height: 60%">
+								<hr>
+							</div>
+						</div>
+					</div>
+			</div>
+		</section>
+		<!-- End post-content Area -->
+
+		<div class="rocket-img">
+			<img src="/img/rocket.png" alt="">
+		</div>
+	</section>
+	<!-- End Banner Area -->
+	<!-- Start top-category-widget Area -->
+	<section class="top-category-widget-area pt-90 pb-90 " id="mainView">
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
+	</section>
+	<!-- End top-category-widget Area -->
+
+	<!-- Start post-content Area -->
+	<section class="post-content-area">
+		<div class="container">
+
+		</div>
+	</section>
+	<!-- End post-content Area -->
+
+	<!-- Start Footer Area -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row"></div>
+		</div>
+	</footer>
+	<!-- End Footer Area -->
+
+	<!-- ####################### Start Scroll to Top Area ####################### -->
+	<div id="back-top">
+		<a title="Go to Top" href="#"></a>
+	</div>
+	<!-- ####################### End Scroll to Top Area ####################### -->
+
+	<script src="/js/vendor/jquery-2.2.4.min.js"></script>
+	<script language="JavaScript">
+        function showWrong() {
+            console.log($("#wrong")[0])
+			$("#wrong")[0].style.display=''
+			$("#pig")[0].style.display='none'
+        }
+        // "
+	</script>
+	<script language="javascript" >
+        $(function () {
+            $("html,body").animate({scrollTop: $("#top").offset().top}, 500);
+        });
+	 </script>
+	<script src="/js/popper.min.js" ></script>
+	<script src="/js/vendor/bootstrap.min.js"></script>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>-->
+	<script src="/js/easing.min.js"></script>
+	<script src="/js/hoverIntent.js"></script>
+	<script src="/js/superfish.min.js"></script>
+	<script src="/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/js/jquery.magnific-popup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/owl-carousel-thumb.min.js"></script>
+	<script src="/js/jquery.sticky.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/parallax.min.js"></script>
+	<script src="/js/waypoints.min.js"></script>
+	<script src="/js/wow.min.js"></script>
+	<script src="/js/jquery.counterup.min.js"></script>
+	<script src="/js/mail-script.js"></script>
+	<script src="/js/main.js"></script>
+
+</body>
+
+</html>
